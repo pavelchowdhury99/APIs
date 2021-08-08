@@ -1,5 +1,8 @@
-PROXY_WEBSITES:
-  # internal working of fetching proxies for us
-  # will fail if this link is changed or is 
-  # not responsing
-  US : https://www.us-proxy.org/
+PROXY_WEBSITES :
+  US :
+    # internal working of fetching proxies for us
+    # will fail if this link for PROXY_SITE changed
+    # or is not responding
+    PROXY_SITE : https://www.us-proxy.org/
+    HTTP_TEST : http://www.ritba.org/tolls-2/
+    HTTPS_TEST : https://www.mcallen.net/departments/bridge/mcallen-hidalgo

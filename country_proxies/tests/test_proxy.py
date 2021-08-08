@@ -6,7 +6,7 @@ from country_proxies.common import read_yaml
 
 
 def test_us_proxy_site():
-    url = read_yaml(os.path.join(os.pardir, 'config.yaml'))['PROXY_WEBSITES']['US']
+    url = read_yaml(os.path.join(os.pardir, 'config.yaml'))['PROXY_WEBSITES']['US']['PROXY_SITE']
     assert requests.get(url).ok == True, "URL of us proxies is having error"
 
 
