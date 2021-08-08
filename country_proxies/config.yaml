@@ -1,0 +1,5 @@
+PROXY_WEBSITES:
+  # internal working of fetching proxies for us
+  # will fail if this link is changed or is 
+  # not responsing
+  US : https://www.us-proxy.org/
