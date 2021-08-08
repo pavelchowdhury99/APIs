@@ -1,4 +1,4 @@
-from common import read_yaml
+from country_proxies.common import read_yaml
 import requests
 import pandas as pd
 import yaml
@@ -7,5 +7,3 @@ from bs4 import BeautifulSoup
 
 class Proxy():
     pass
-
-print(read_yaml('config.yaml'))
