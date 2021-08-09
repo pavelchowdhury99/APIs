@@ -33,4 +33,5 @@ To create an API to return latest active proxies for countries in json.
     5. Regulary update to git.
 
 ## References
-[Configuration file](https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3)
+1. [Configuration file](https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3)
+2. [Hostname required error in requests](https://stackoverflow.com/questions/66642705/why-requests-raise-this-exception-check-hostname-requires-server-hostname) use http:// instead of https:// in proxy value to avoid this error 
