@@ -5,4 +5,7 @@ PROXY_WEBSITES :
     # or is not responding
     PROXY_SITE : https://www.us-proxy.org/
     HTTP_TEST : http://www.ritba.org/tolls-2/
-    HTTPS_TEST : https://www.mcallen.net/departments/bridge/mcallen-hidalgo
+    HTTPS_TEST : https://www.mcallen.net/departments/bridge/anzalduas
+
+PROXY_DATAFRAME :
+  PATH : proxies.json
