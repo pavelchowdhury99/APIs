@@ -82,7 +82,7 @@ toml==0.10.2
 tox==3.21.4
 tqdm==4.61.1
 ua-parser==0.10.0
-urllib3==1.26.3
+urllib3==1.25.11
 virtualenv==20.4.2
 webencodings==0.5.1
 Werkzeug==2.0.1
