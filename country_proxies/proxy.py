@@ -101,13 +101,13 @@ class Proxy:
         if self.check_proxy_workings(proxy, https_test_url):
             logger.info("Previous https proxy still working for https")
         else:
-            proxy.update(dict(https=self.extract_new_proxies(for_https=True)))
+            proxy.update(dict(https=self.extract_new_proxies(for_https=True).get('https')))
             logger.info("Updating new proxy for https")
         # for http
         if self.check_proxy_workings(proxy, http_test_url):
             logger.info("Previous http proxy still working for http")
         else:
-            proxy.update(dict(http=self.extract_new_proxies(for_https=False)))
+            proxy.update(dict(http=self.extract_new_proxies(for_https=False).get('https')))
             logger.info("Updating new proxy for http")
         self.update_proxies(proxy, context)
         logger.info("All run successfully")
@@ -117,9 +117,9 @@ if __name__ == "__main__":
     conn = sqlite3.connect("Proxy.db")
     cursor = conn.cursor()
     x = Proxy(country_code='us', config_yaml_path='config.yaml')
-    x.run(context={'cursor': cursor})
+    # x.run(context={'cursor': cursor})
     # x.update_proxies(proxies={'http': 'http://98.116.152.143:3128', 'https': 'http://20.69.69.212:3128'}, context={'cursor': cursor})
-    # print(x.get_country_proxies_from_db(context={'cursor': cursor}))
+    print(x.get_country_proxies_from_db(context={'cursor': cursor}))
     # x.extract_new_proxies()
     conn.commit()
     conn.close()
