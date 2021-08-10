@@ -35,6 +35,8 @@ cursor.execute('''SELECT COUNTRY,HTTP, HTTPS
                 FROM PROXY
                 WHERE COUNTRY='US';
                 ''')
-print(cursor.fetchall())
+result = cursor.fetchall()[0]
+response = {result[0]: {'http': result[1], 'https': result[2]}}
+print(response)
 conn.commit()
 conn.close()

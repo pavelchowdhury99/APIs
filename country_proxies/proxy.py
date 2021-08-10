@@ -1,4 +1,5 @@
 from country_proxies.common import read_yaml, get_logger
+import time
 import sys
 from timeit import timeit
 import requests
@@ -114,12 +115,14 @@ class Proxy:
 
 
 if __name__ == "__main__":
-    conn = sqlite3.connect("Proxy.db")
-    cursor = conn.cursor()
-    x = Proxy(country_code='us', config_yaml_path='config.yaml')
-    # x.run(context={'cursor': cursor})
-    # x.update_proxies(proxies={'http': 'http://98.116.152.143:3128', 'https': 'http://20.69.69.212:3128'}, context={'cursor': cursor})
-    print(x.get_country_proxies_from_db(context={'cursor': cursor}))
-    # x.extract_new_proxies()
-    conn.commit()
-    conn.close()
+    while 1:
+        conn = sqlite3.connect("Proxy.db")
+        cursor = conn.cursor()
+        x = Proxy(country_code='us', config_yaml_path='config.yaml')
+        x.run(context={'cursor': cursor})
+        # x.update_proxies(proxies={'http': 'http://98.116.152.143:3128', 'https': 'http://20.69.69.212:3128'}, context={'cursor': cursor})
+        # print(x.get_country_proxies_from_db(context={'cursor': cursor}))
+        # x.extract_new_proxies()
+        conn.commit()
+        conn.close()
+        time.sleep(15)
