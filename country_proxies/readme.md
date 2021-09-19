@@ -33,4 +33,9 @@ To create an API to return latest active proxies for countries in json.
     5. Regulary update to git.
 
 ## References
-[Configuration file](https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3)
+1. [Configuration file](https://towardsdatascience.com/from-novice-to-expert-how-to-write-a-configuration-file-in-python-273e171a8eb3)
+2. [Hostname required error in requests](https://stackoverflow.com/questions/66642705/why-requests-raise-this-exception-check-hostname-requires-server-hostname) use http:// instead of https:// in proxy value to avoid this error 
+3. [SQLite3](https://towardsdatascience.com/sqlite-3-using-pythons-sqlite-3-module-to-save-program-data-bc6b34dcc721)
+4. [Dynamic query parameter](https://stackoverflow.com/questions/16856647/sqlite3-programmingerror-incorrect-number-of-bindings-supplied-the-current-sta)
+5. [Run something after flask app has started running](https://www.py4u.net/discuss/141357)
+6. [Multiprocessing](https://www.geeksforgeeks.org/multiprocessing-python-set-1/)

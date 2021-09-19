@@ -1,13 +1,14 @@
+import os
 import pytest
+import yaml
+import requests
+from country_proxies.common import read_yaml
 
-def test_validate_yaml():
-    with pytest.raises(FileNotFoundError):
-        read_yaml(file_path="source/data/non_existing_file.yaml")
 
-    with pytest.raises(yaml.scanner.ScannerError):
-        # only show the first error
-        read_yaml(file_path="source/data/sample_invalid.yaml")
+def test_us_proxy_site():
+    url = read_yaml(os.path.join(os.pardir, 'config.yaml'))['PROXY_WEBSITES']['US']['PROXY_SITE']
+    assert requests.get(url).ok == True, "URL of us proxies is having error"
 
-    with pytest.raises(yaml.parser.ParserError):
-        # only show the first error
-        read_yaml(file_path="source/data/sample_invalid.yaml")
+
+if __name__ == "__main__":
+    pytest.main(['-v'])
