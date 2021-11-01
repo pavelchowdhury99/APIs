@@ -13,7 +13,7 @@ def get_photo_metadata(image:bytes)->dict:
     return_dict={}
     for attribute in dir(image):
         try:
-            return_dict.update({f"{attribute}:{image.__getattr__(attribute)}"})
+            return_dict.update({f"{attribute}":f"{image.__getattr__(attribute)}"})
         except (KeyError, AttributeError, NotImplementedError) as e:
             logger.info(f"KeyError, AttributeError, NotImplementedError for {attribute}")
             continue
@@ -26,7 +26,13 @@ async def test_app():
     return dict(message="The app is working!")
 
 @app.post("/")
-def get_metadata_of_photo(image: UploadFile = File(...)):
+def root(image: UploadFile = File(...)):
     x = image.file.read()
     return get_photo_metadata(image = x)
 
+if __name__ == "__main__":
+    file_path = ""
+    print("In Main")
+    with open(file_path,'rb') as f:
+        get_photo_metadata(f.read())
+        print("Done")
