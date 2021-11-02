@@ -10,6 +10,7 @@ from pydantic.utils import update_normalized_all
 from PIL import Image
 import io
 import pytesseract
+from concurrent.futures import ThreadPoolExecutor
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 sentiment_intensity_analyzer = SentimentIntensityAnalyzer()
@@ -30,7 +31,7 @@ def get_sentiment_and_polarity_score(text: str) -> Tuple[dict, dict]:
     scores = sentiment_intensity_analyzer.polarity_scores(text)
     senti = "Positive" if scores.get("compound") >= 0.05 else "Negative" \
         if scores.get("compound") <= -0.05 else "Neutral"
-    return scores, {"sentiment": senti}
+    return {"text":text,"polarity_scores":scores, "sentiment": senti}
 
 
 def get_sentiments_for_images(image) -> Tuple[dict, dict]:
@@ -52,9 +53,12 @@ def texts_sentiment(sentiment_of_text: SentimentOfText):
     A route to post list of text and get 
     polarity and sentiment of text
     """
-    return_dict = {}
-    for text_ in sentiment_of_text.text:
-        return_dict.update({text_: get_sentiment_and_polarity_score(text_)})
+    with ThreadPoolExecutor(max_workers=2) as exe:
+        logger.info(f"Working with texts")
+        return_dict = exe.map(get_sentiment_and_polarity_score,sentiment_of_text.text)
+    # for text_ in sentiment_of_text.text:
+    #     return_dict.update({text_: get_sentiment_and_polarity_score(text_)})
+    logger.info("Done with texts")
     return return_dict
 
 
@@ -64,8 +68,7 @@ def image_sentiment(image: UploadFile = File(...)):
     A route to post image and get 
     polarity and sentiment of text
     """
-    return {f"{image.filename}": get_sentiments_for_images(image.file)}
-
+    return {"file_name":f"{image.filename}", **get_sentiments_for_images(image.file)}
 
 if __name__ == "__main__":
     pass
